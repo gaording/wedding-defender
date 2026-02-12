@@ -1,0 +1,99 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <!-- 顶部问候区 -->
+  <view class="header">
+    <view class="greeting">
+      <text class="greeting-text">你好，单身战士</text>
+      <text class="greeting-subtitle">今天也要优雅地应对催婚</text>
+    </view>
+    <view class="daily-buff" bindtap="onBuffTap">
+      <text class="buff-icon">🍀</text>
+      <view class="buff-info">
+        <text class="buff-title">今日幸运buff</text>
+        <text class="buff-desc">{{dailyBuff}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 数据统计 -->
+  <view class="stats-card">
+    <view class="stat-item">
+      <text class="stat-value">{{achievements.defenseCount}}</text>
+      <text class="stat-label">成功应对</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-value">{{achievements.diaryCount}}</text>
+      <text class="stat-label">日记篇数</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-value">{{achievements.communityPosts}}</text>
+      <text class="stat-label">社区发言</text>
+    </view>
+  </view>
+
+  <!-- 每日一句 -->
+  <view class="card daily-quote">
+    <view class="quote-header">
+      <text class="quote-icon">💭</text>
+      <text class="quote-title">今日安慰</text>
+    </view>
+    <view class="quote-content">
+      <text class="quote-text">{{dailyQuote}}</text>
+      <text class="quote-author" wx:if="{{dailyQuoteAuthor}}">—— {{dailyQuoteAuthor}}</text>
+    </view>
+  </view>
+
+  <!-- 快速入口 -->
+  <view class="quick-actions">
+    <view class="action-item" bindtap="goToArsenal">
+      <view class="action-icon">🛡️</view>
+      <text class="action-title">生成话术</text>
+      <text class="action-desc">快速获取应对策略</text>
+    </view>
+    <view class="action-item" bindtap="goToDiary">
+      <view class="action-icon">📝</view>
+      <text class="action-title">写日记</text>
+      <text class="action-desc">记录催婚场景</text>
+    </view>
+    <view class="action-item" bindtap="goToCommunity">
+      <view class="action-icon">🌳</view>
+      <text class="action-title">树洞</text>
+      <text class="action-desc">匿名吐槽分享</text>
+    </view>
+    <view class="action-item" bindtap="goToGame">
+      <view class="action-icon">🎮</view>
+      <text class="action-title">剧本杀</text>
+      <text class="action-desc">游戏化练习</text>
+    </view>
+  </view>
+
+  <!-- 称号展示 -->
+  <view class="card titles-card" wx:if="{{titles.length > 0}}">
+    <view class="titles-header">
+      <text class="titles-icon">🏆</text>
+      <text class="titles-title">我的称号</text>
+    </view>
+    <view class="titles-list">
+      <view class="title-tag" wx:for="{{titles}}" wx:key="index">
+        {{item}}
+      </view>
+      <text class="titles-empty" wx:if="{{titles.length === 0}}">暂无称号，继续加油！</text>
+    </view>
+  </view>
+
+  <!-- 热门话题 -->
+  <view class="card topics-card">
+    <view class="topics-header">
+      <text class="topics-icon">🔥</text>
+      <text class="topics-title">热门话题</text>
+    </view>
+    <view class="topics-list">
+      <view class="topic-item" wx:for="{{hotTopics}}" wx:key="index" bindtap="goToTopic" data-topic="{{item}}">
+        <text class="topic-text">{{item}}</text>
+        <text class="topic-arrow">›</text>
+      </view>
+    </view>
+  </view>
+</view>

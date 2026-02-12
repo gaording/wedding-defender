@@ -1,0 +1,41 @@
+<!--pages/diary/diary.wxml-->
+<view class="container">
+  <!-- 头部 -->
+  <view class="header">
+    <text class="header-title">催婚日记</text>
+    <text class="header-subtitle">记录每一次应对，见证你的成长</text>
+  </view>
+
+  <!-- 日记列表 -->
+  <view class="diary-list" wx:if="{{diaries.length > 0}}">
+    <view class="diary-card" wx:for="{{diaries}}" wx:key="id" bindtap="viewDiary" data-id="{{item.id}}">
+      <view class="diary-header">
+        <text class="diary-date">{{item.date}}</text>
+        <text class="diary-mood">{{item.mood}}</text>
+      </view>
+      <view class="diary-content">
+        <text class="diary-question" wx:if="{{item.question}}">
+          💬 问题：{{item.question}}
+        </text>
+        <text class="diary-response" wx:if="{{item.response}}">
+          ✨ 应对：{{item.response}}
+        </text>
+        <text class="diary-feeling" wx:if="{{item.feeling}}">
+          💭 心情：{{item.feeling}}
+        </text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{diaries.length === 0}}">
+    <text class="empty-icon">📝</text>
+    <text class="empty-text">还没有日记记录</text>
+    <text class="empty-hint">记录下每一次应对，见证你的成长</text>
+  </view>
+
+  <!-- 添加按钮 -->
+  <view class="fab" bindtap="addDiary">
+    <text class="fab-icon">+</text>
+  </view>
+</view>

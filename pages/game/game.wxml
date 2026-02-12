@@ -1,0 +1,101 @@
+<!--pages/game/game.wxml-->
+<view class="container">
+  <!-- 游戏头部 -->
+  <view class="game-header">
+    <text class="game-title">🎭 催婚剧本杀</text>
+    <text class="game-desc">在游戏中练习应对技巧，轻松get防御技能</text>
+  </view>
+
+  <!-- 游戏状态 -->
+  <view class="game-stats" wx:if="{{gameStarted}}">
+    <view class="stat-item">
+      <text class="stat-value">优雅度</text>
+      <view class="stat-bar">
+        <view class="stat-bar-fill" style="width: {{elegance}}%; background: #667eea;"></view>
+      </view>
+      <text class="stat-number">{{elegance}}</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-value">气氛值</text>
+      <view class="stat-bar">
+        <view class="stat-bar-fill" style="width: {{atmosphere}}%; background: #10b981;"></view>
+      </view>
+      <text class="stat-number">{{atmosphere}}</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-value">杀伤力</text>
+      <view class="stat-bar">
+        <view class="stat-bar-fill" style="width: {{damage}}%; background: #ef4444;"></view>
+      </view>
+      <text class="stat-number">{{damage}}</text>
+    </view>
+  </view>
+
+  <!-- 游戏开始前 -->
+  <view class="start-screen" wx:if="{{!gameStarted && !gameEnded}}">
+    <view class="intro-card">
+      <text class="intro-title">游戏规则</text>
+      <text class="intro-text">1. 系统会随机生成催婚场景</text>
+      <text class="intro-text">2. 选择你的应对方式</text>
+      <text class="intro-text">3. 系统会评估你的优雅度、气氛值和杀伤力</text>
+      <text class="intro-text">4. 目标：保持高优雅度和气氛值，降低杀伤力</text>
+    </view>
+
+    <button class="btn-start" bindtap="startGame">开始游戏</button>
+  </view>
+
+  <!-- 游戏进行中 -->
+  <view class="game-screen" wx:if="{{gameStarted && !gameEnded}}">
+    <view class="scenario-card">
+      <view class="scenario-header">
+        <text class="scenario-role">{{currentScenario.role}}</text>
+        <text class="scenario-location">{{currentScenario.location}}</text>
+      </view>
+      <view class="scenario-content">
+        <text class="scenario-text">{{currentScenario.dialogue}}</text>
+      </view>
+    </view>
+
+    <view class="options-list">
+      <view class="option-card"
+            wx:for="{{currentScenario.options}}"
+            wx:key="index"
+            bindtap="selectOption"
+            data-index="{{index}}">
+        <text class="option-text">{{item.text}}</text>
+        <text class="option-hint">{{item.hint}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 游戏结束 -->
+  <view class="end-screen" wx:if="{{gameEnded}}">
+    <view class="result-card">
+      <text class="result-title">🎉 游戏结束</text>
+      <view class="result-stats">
+        <view class="result-item">
+          <text class="result-label">优雅度</text>
+          <text class="result-value">{{elegance}}</text>
+        </view>
+        <view class="result-item">
+          <text class="result-label">气氛值</text>
+          <text class="result-value">{{atmosphere}}</text>
+        </view>
+        <view class="result-item">
+          <text class="result-label">杀伤力</text>
+          <text class="result-value">{{damage}}</text>
+        </view>
+      </view>
+
+      <view class="achievement-section" wx:if="{{achievement}}">
+        <text class="achievement-text">🏆 解锁称号：{{achievement}}</text>
+      </view>
+
+      <view class="result-comment">
+        <text class="comment-text">{{comment}}</text>
+      </view>
+    </view>
+
+    <button class="btn-restart" bindtap="restartGame">再玩一次</button>
+  </view>
+</view>

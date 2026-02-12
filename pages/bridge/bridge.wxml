@@ -1,0 +1,56 @@
+<!--pages/bridge/bridge.wxml-->
+<view class="container">
+  <!-- 头部 -->
+  <view class="header-card">
+    <text class="header-title">🌉 沟通桥梁</text>
+    <text class="header-desc">理解是双向的，让我们学会更好地沟通</text>
+  </view>
+
+  <!-- 功能入口 -->
+  <view class="menu-list">
+    <view class="menu-card" bindtap="openLetter">
+      <view class="menu-icon">✉️</view>
+      <view class="menu-content">
+        <text class="menu-title">给父母的一封信</text>
+        <text class="menu-desc">用文字表达你的想法和感受</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <view class="menu-card" bindtap="openGuide">
+      <view class="menu-icon">📖</view>
+      <view class="menu-content">
+        <text class="menu-title">沟通指南</text>
+        <text class="menu-desc">学习有效的沟通技巧</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <view class="menu-card" bindtap="openTest">
+      <view class="menu-icon">📊</view>
+      <view class="menu-content">
+        <text class="menu-title">心理自测</text>
+        <text class="menu-desc">了解自己的心理状态</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <view class="menu-card" bindtap="openTips">
+      <view class="menu-icon">💡</view>
+      <view class="menu-content">
+        <text class="menu-title">应对技巧</text>
+        <text class="menu-desc">实用的话术和策略</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 每日建议 -->
+  <view class="tip-card">
+    <view class="tip-header">
+      <text class="tip-icon">💭</text>
+      <text class="tip-title">今日沟通建议</text>
+    </view>
+    <text class="tip-content">{{dailyTip}}</text>
+  </view>
+</view>

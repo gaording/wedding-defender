@@ -1,0 +1,123 @@
+<!--pages/arsenal/arsenal.wxml-->
+<view class="container">
+  <!-- 顶部Tab切换 -->
+  <view class="tabs">
+    <view class="tab-item {{currentTab === 'script' ? 'active' : ''}}" bindtap="switchTab" data-tab="script">
+      话术生成器
+    </view>
+    <view class="tab-item {{currentTab === 'emoji' ? 'active' : ''}}" bindtap="switchTab" data-tab="emoji">
+      表情包
+    </view>
+    <view class="tab-item {{currentTab === 'data' ? 'active' : ''}}" bindtap="switchTab" data-tab="data">
+      数据反击
+    </view>
+  </view>
+
+  <!-- 话术生成器 -->
+  <view class="tab-content" wx:if="{{currentTab === 'script'}}">
+    <view class="card selector-card">
+      <view class="selector-section">
+        <text class="selector-label">提问对象</text>
+        <view class="tags-container">
+          <view class="tag {{selectedRole === item.value ? 'active' : ''}}"
+                wx:for="{{roleOptions}}"
+                wx:key="value"
+                bindtap="selectRole"
+                data-value="{{item.value}}">
+            {{item.label}}
+          </view>
+        </view>
+      </view>
+
+      <view class="divider"></view>
+
+      <view class="selector-section">
+        <text class="selector-label">问题类型</text>
+        <view class="tags-container">
+          <view class="tag {{selectedQuestionType === item.value ? 'active' : ''}}"
+                wx:for="{{questionTypeOptions}}"
+                wx:key="value"
+                bindtap="selectQuestionType"
+                data-value="{{item.value}}">
+            {{item.label}}
+          </view>
+        </view>
+      </view>
+
+      <view class="divider"></view>
+
+      <view class="selector-section">
+        <text class="selector-label">回应风格</text>
+        <view class="tags-container">
+          <view class="tag {{selectedStyle === item.value ? 'active' : ''}}"
+                wx:for="{{styleOptions}}"
+                wx:key="value"
+                bindtap="selectStyle"
+                data-value="{{item.value}}">
+            {{item.label}}
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <button class="btn-generate" bindtap="generateScript" disabled="{{!canGenerate}}">
+      {{canGenerate ? '生成话术' : '请选择完整选项'}}
+    </button>
+
+    <!-- 生成结果 -->
+    <view class="card result-card" wx:if="{{generatedScript}}">
+      <view class="result-header">
+        <text class="result-title">应对话术</text>
+        <view class="result-actions">
+          <text class="action-btn" bindtap="copyScript">复制</text>
+          <text class="action-btn" bindtap="regenerateScript">换一条</text>
+        </view>
+      </view>
+      <view class="result-content">
+        <text class="script-text">{{generatedScript.script}}</text>
+        <text class="script-usage" wx:if="{{generatedScript.usage}}">
+          💡 {{generatedScript.usage}}
+        </text>
+      </view>
+      <button class="btn-record" bindtap="recordUse">
+        记录一次成功应对
+      </button>
+    </view>
+
+    <!-- 收藏的话术 -->
+    <view class="card favorite-card" wx:if="{{favoriteScripts.length > 0}}">
+      <view class="favorite-header">
+        <text class="favorite-title">⭐ 我的收藏</text>
+      </view>
+      <view class="favorite-list">
+        <view class="favorite-item" wx:for="{{favoriteScripts}}" wx:key="id" bindtap="useFavorite" data-item="{{item}}">
+          <text class="favorite-text">{{item.script}}</text>
+          <text class="favorite-time">{{item.time}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 表情包 -->
+  <view class="tab-content" wx:if="{{currentTab === 'emoji'}}">
+    <view class="emoji-grid">
+      <view class="emoji-item" wx:for="{{emojiList}}" wx:key="index" bindtap="previewEmoji" data-url="{{item}}">
+        <image class="emoji-image" src="{{item}}" mode="aspectFit"></image>
+        <text class="emoji-action">长按保存</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 数据反击 -->
+  <view class="tab-content" wx:if="{{currentTab === 'data'}}">
+    <view class="data-list">
+      <view class="data-card" wx:for="{{dataCards}}" wx:key="id" bindtap="viewDataCard" data-item="{{item}}">
+        <text class="data-title">{{item.title}}</text>
+        <text class="data-desc">{{item.description}}</text>
+        <view class="data-tags">
+          <text class="data-tag tag-primary">{{item.category}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

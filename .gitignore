@@ -1,0 +1,57 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+*~
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 微信小程序
+miniprogram_npm/
+.private/
+
+# 依赖
+node_modules/
+
+# 证书和密钥
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+
+# 日志
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 构建产物
+dist/
+build/
+*.min.js
+
+# 临时文件
+*.tmp
+*.temp
+.cache/
+
+# 环境配置
+.env
+.env.local
+.env.*.local
+
+# 微信开发者工具
+project.config.json.backup

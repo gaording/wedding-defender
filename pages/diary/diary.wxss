@@ -1,0 +1,131 @@
+/* pages/diary/diary.wxss */
+.container {
+  padding: 20rpx;
+  padding-bottom: 100rpx;
+  min-height: 100vh;
+}
+
+/* 头部 */
+.header {
+  text-align: center;
+  padding: 40rpx 0;
+}
+
+.header-title {
+  display: block;
+  font-size: 40rpx;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 12rpx;
+}
+
+.header-subtitle {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+/* 日记列表 */
+.diary-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.diary-card {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.diary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+  padding-bottom: 16rpx;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+.diary-date {
+  font-size: 24rpx;
+  color: #667eea;
+  font-weight: 500;
+}
+
+.diary-mood {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.diary-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.diary-question,
+.diary-response,
+.diary-feeling {
+  font-size: 28rpx;
+  line-height: 1.6;
+  display: block;
+}
+
+.diary-question {
+  color: #ef4444;
+}
+
+.diary-response {
+  color: #10b981;
+}
+
+.diary-feeling {
+  color: #666666;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120rpx 0;
+}
+
+.empty-icon {
+  font-size: 128rpx;
+  margin-bottom: 30rpx;
+}
+
+.empty-text {
+  font-size: 32rpx;
+  color: #999999;
+  margin-bottom: 16rpx;
+}
+
+.empty-hint {
+  font-size: 24rpx;
+  color: #cccccc;
+}
+
+/* 添加按钮 */
+.fab {
+  position: fixed;
+  right: 40rpx;
+  bottom: 150rpx;
+  width: 120rpx;
+  height: 120rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 24rpx rgba(102, 126, 234, 0.4);
+  z-index: 1000;
+}
+
+.fab-icon {
+  font-size: 64rpx;
+  color: #ffffff;
+  line-height: 1;
+}

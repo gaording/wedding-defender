@@ -1,0 +1,66 @@
+<!--pages/community/community.wxml-->
+<view class="container">
+  <!-- 顶部Tab -->
+  <view class="tabs">
+    <view class="tab-item {{currentTab === 'recommend' ? 'active' : ''}}" bindtap="switchTab" data-tab="recommend">
+      推荐
+    </view>
+    <view class="tab-item {{currentTab === 'latest' ? 'active' : ''}}" bindtap="switchTab" data-tab="latest">
+      最新
+    </view>
+    <view class="tab-item {{currentTab === 'hot' ? 'active' : ''}}" bindtap="switchTab" data-tab="hot">
+      热门
+    </view>
+  </view>
+
+  <!-- 发帖按钮 -->
+  <view class="fab" bindtap="createPost">
+    <text class="fab-icon">+</text>
+  </view>
+
+  <!-- 帖子列表 -->
+  <view class="post-list" wx:if="{{posts.length > 0}}">
+    <view class="post-card" wx:for="{{posts}}" wx:key="id" bindtap="viewPost" data-id="{{item.id}}">
+      <!-- 用户信息（匿名）-->
+      <view class="post-header">
+        <view class="user-info">
+          <text class="user-avatar">{{item.avatar}}</text>
+          <view class="user-detail">
+            <text class="user-name">{{item.userName}}</text>
+            <text class="post-time">{{item.time}}</text>
+          </view>
+        </view>
+        <text class="post-tag tag-{{item.type}}">{{item.typeName}}</text>
+      </view>
+
+      <!-- 帖子内容 -->
+      <view class="post-content">
+        <text class="post-title" wx:if="{{item.title}}">{{item.title}}</text>
+        <text class="post-text">{{item.content}}</text>
+      </view>
+
+      <!-- 互动数据 -->
+      <view class="post-stats">
+        <view class="stat-item">
+          <text class="stat-icon">💬</text>
+          <text class="stat-text">{{item.commentCount}}</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-icon">❤️</text>
+          <text class="stat-text">{{item.likeCount}}</text>
+        </view>
+        <view class="stat-item" bindtap="sharePost" data-id="{{item.id}}" data-stop-propagation>
+          <text class="stat-icon">📤</text>
+          <text class="stat-text">分享</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{posts.length === 0}}">
+    <text class="empty-icon">🌳</text>
+    <text class="empty-text">树洞还空着呢</text>
+    <text class="empty-hint">快来分享你的故事吧</text>
+  </view>
+</view>

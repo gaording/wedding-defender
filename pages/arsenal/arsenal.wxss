@@ -1,0 +1,270 @@
+/* pages/arsenal/arsenal.wxss */
+.container {
+  padding: 20rpx;
+  padding-bottom: 100rpx;
+}
+
+/* Tab切换 */
+.tabs {
+  display: flex;
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 10rpx;
+  margin-bottom: 30rpx;
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 28rpx;
+  color: #666666;
+  border-radius: 12rpx;
+  transition: all 0.3s;
+}
+
+.tab-item.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* 选择器卡片 */
+.selector-card {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.selector-section {
+  margin-bottom: 20rpx;
+}
+
+.selector-section:last-child {
+  margin-bottom: 0;
+}
+
+.selector-label {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333333;
+  margin-bottom: 20rpx;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.tag {
+  padding: 16rpx 32rpx;
+  background: #f5f7fa;
+  border-radius: 32rpx;
+  font-size: 26rpx;
+  color: #666666;
+  transition: all 0.3s;
+  border: 2rpx solid transparent;
+}
+
+.tag.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  border-color: #667eea;
+}
+
+.divider {
+  height: 2rpx;
+  background: #e5e7eb;
+  margin: 30rpx 0;
+}
+
+/* 生成按钮 */
+.btn-generate {
+  width: 100%;
+  padding: 28rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  font-size: 32rpx;
+  font-weight: 500;
+  border-radius: 48rpx;
+  border: none;
+  margin-bottom: 30rpx;
+}
+
+.btn-generate[disabled] {
+  background: #cccccc;
+  color: #999999;
+}
+
+/* 结果卡片 */
+.result-card {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.result-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.result-actions {
+  display: flex;
+  gap: 20rpx;
+}
+
+.action-btn {
+  font-size: 26rpx;
+  color: #ffffff;
+  padding: 8rpx 20rpx;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 24rpx;
+}
+
+.result-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.script-text {
+  font-size: 30rpx;
+  color: #ffffff;
+  line-height: 1.8;
+  margin-bottom: 16rpx;
+}
+
+.script-usage {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+}
+
+.btn-record {
+  margin-top: 24rpx;
+  padding: 20rpx;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 26rpx;
+  border-radius: 32rpx;
+  border: none;
+}
+
+/* 收藏卡片 */
+.favorite-card {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+}
+
+.favorite-header {
+  margin-bottom: 20rpx;
+}
+
+.favorite-title {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333333;
+}
+
+.favorite-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.favorite-item {
+  padding: 20rpx;
+  background: #f5f7fa;
+  border-radius: 12rpx;
+}
+
+.favorite-text {
+  display: block;
+  font-size: 26rpx;
+  color: #333333;
+  line-height: 1.6;
+  margin-bottom: 8rpx;
+}
+
+.favorite-time {
+  font-size: 22rpx;
+  color: #999999;
+}
+
+/* 表情包网格 */
+.emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+}
+
+.emoji-item {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.emoji-image {
+  width: 100%;
+  height: 200rpx;
+  margin-bottom: 12rpx;
+}
+
+.emoji-action {
+  font-size: 22rpx;
+  color: #999999;
+}
+
+/* 数据卡片列表 */
+.data-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.data-card {
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.data-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #333333;
+  margin-bottom: 12rpx;
+}
+
+.data-desc {
+  font-size: 26rpx;
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 16rpx;
+}
+
+.data-tags {
+  display: flex;
+  gap: 12rpx;
+}
+
+.data-tag {
+  font-size: 22rpx;
+  padding: 8rpx 16rpx;
+  border-radius: 16rpx;
+}

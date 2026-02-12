@@ -1,0 +1,80 @@
+<!--pages/profile/profile.wxml-->
+<view class="container">
+  <!-- 用户信息卡片 -->
+  <view class="user-card">
+    <view class="user-avatar-wrapper">
+      <image class="user-avatar" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}"></image>
+      <view class="user-info">
+        <text class="user-name">{{userInfo.nickName || '单身战士'}}</text>
+        <text class="user-level">Lv.{{userLevel}}</text>
+      </view>
+    </view>
+
+    <!-- 称号展示 -->
+    <view class="titles-section" wx:if="{{titles.length > 0}}">
+      <text class="titles-title">🏆 已获称号</text>
+      <view class="titles-list">
+        <text class="title-tag" wx:for="{{titles}}" wx:key="index">{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 数据统计 -->
+  <view class="stats-section">
+    <view class="stat-item">
+      <text class="stat-value">{{achievements.defenseCount}}</text>
+      <text class="stat-label">成功应对</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-value">{{achievements.diaryCount}}</text>
+      <text class="stat-label">日记篇数</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-value">{{achievements.communityPosts}}</text>
+      <text class="stat-label">社区发言</text>
+    </view>
+  </view>
+
+  <!-- 功能入口 -->
+  <view class="menu-section">
+    <view class="menu-item" bindtap="goToDiary">
+      <view class="menu-left">
+        <text class="menu-icon">📝</text>
+        <text class="menu-title">催婚日记</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <view class="menu-item" bindtap="goToBridge">
+      <view class="menu-left">
+        <text class="menu-icon">🌉</text>
+        <text class="menu-title">沟通指南</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <view class="menu-item" bindtap="goToGame">
+      <view class="menu-left">
+        <text class="menu-icon">🎮</text>
+        <text class="menu-title">剧本杀</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+
+    <view class="menu-item" bindtap="shareApp">
+      <view class="menu-left">
+        <text class="menu-icon">📤</text>
+        <text class="menu-title">分享给朋友</text>
+      </view>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 底部信息 -->
+  <view class="footer">
+    <text class="footer-text">你不是一个人在战斗</text>
+    <text class="footer-subtitle">一起优雅应对催婚</text>
+  </view>
+</view>

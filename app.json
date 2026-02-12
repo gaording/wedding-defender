@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/arsenal/arsenal",
+    "pages/diary/diary",
+    "pages/community/community",
+    "pages/bridge/bridge",
+    "pages/game/game",
+    "pages/profile/profile"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#667eea",
+    "navigationBarTitleText": "催婚防御助手",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f5f7fa"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#667eea",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tab-home.png",
+        "selectedIconPath": "images/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/arsenal/arsenal",
+        "text": "武器库",
+        "iconPath": "images/tab-arsenal.png",
+        "selectedIconPath": "images/tab-arsenal-active.png"
+      },
+      {
+        "pagePath": "pages/community/community",
+        "text": "树洞",
+        "iconPath": "images/tab-community.png",
+        "selectedIconPath": "images/tab-community-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/tab-profile.png",
+        "selectedIconPath": "images/tab-profile-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
