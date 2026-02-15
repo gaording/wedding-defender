@@ -207,6 +207,26 @@ body {
   margin-bottom: 20px;
 }
 
+/* 高亮卡片 - 实时助手入口 */
+.action-card.highlight-card {
+  grid-column: span 2;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+}
+
+.action-card.highlight-card .action-title {
+  color: #fff;
+  font-size: 16px;
+}
+
+.action-card.highlight-card .action-desc {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.action-card.highlight-card .action-icon {
+  font-size: 40px;
+}
+
 .action-card {
   background: #fff;
   border-radius: 12px;

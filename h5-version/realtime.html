@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="实时对线助手 - 聚会时的催婚应对神器">
+  <title>实时对线助手</title>
+
+  <!-- 样式 -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/realtime.css">
+
+  <!-- 移动端调试工具 -->
+  <script src="https://cdn.jsdelivr.net/npm/vconsole@latest/dist/vconsole.min.js"></script>
+  <script>
+    var vConsole = new VConsole();
+  </script>
+</head>
+<body>
+  <div class="realtime-container">
+    <!-- 顶部状态栏 -->
+    <header class="realtime-header">
+      <a href="index.html" class="back-btn">← 返回</a>
+      <h1 class="header-title">实时对线助手</h1>
+      <div class="connection-status" id="connectionStatus">
+        <span class="status-dot"></span>
+        <span class="status-text">准备就绪</span>
+      </div>
+    </header>
+
+    <!-- 风格选择 -->
+    <div class="style-selector">
+      <label class="style-label">表达风格：</label>
+      <div class="style-buttons">
+        <button class="style-btn selected" data-style="gentle">
+          <span class="style-icon">🌸</span>
+          <span class="style-name">温和</span>
+        </button>
+        <button class="style-btn" data-style="humor">
+          <span class="style-icon">😄</span>
+          <span class="style-name">幽默</span>
+        </button>
+        <button class="style-btn" data-style="rational">
+          <span class="style-icon">🧠</span>
+          <span class="style-name">理性</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 实时转写区域 -->
+    <div class="transcript-area">
+      <div class="transcript-header">
+        <span class="transcript-icon">🎤</span>
+        <span class="transcript-title">对方说的话</span>
+      </div>
+      <div class="transcript-content" id="transcriptContent">
+        <p class="transcript-placeholder">点击下方按钮开始录音...</p>
+      </div>
+      <div class="interim-text" id="interimText"></div>
+    </div>
+
+    <!-- 建议回复区域 -->
+    <div class="suggestion-area" id="suggestionArea">
+      <!-- 态度选择（识别到文字后显示） -->
+      <div class="attitude-selector" id="attitudeSelector" style="display: none;">
+        <p class="attitude-hint">选择你的回应态度：</p>
+        <div class="attitude-buttons">
+          <button class="attitude-btn" data-attitude="decline">
+            <span class="attitude-icon">🙅</span>
+            <span class="attitude-name">委婉拒绝</span>
+          </button>
+          <button class="attitude-btn" data-attitude="accept">
+            <span class="attitude-icon">🙆</span>
+            <span class="attitude-name">接受建议</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="suggestion-header">
+        <span class="suggestion-icon">💡</span>
+        <span class="suggestion-title">建议回复</span>
+        <button class="refresh-btn" id="refreshBtn" style="display: none;">换一条</button>
+      </div>
+      <div class="suggestion-content" id="suggestionContent">
+        <p class="suggestion-placeholder">等待识别对方的话...</p>
+      </div>
+      <div class="suggestion-actions" id="suggestionActions" style="display: none;">
+        <button class="copy-btn" id="copyBtn">📋 复制</button>
+        <button class="speak-btn" id="speakBtn">🔊 朗读</button>
+      </div>
+    </div>
+
+    <!-- 对话历史 -->
+    <div class="history-section">
+      <div class="history-header" id="historyToggle">
+        <span class="history-icon">📜</span>
+        <span class="history-title">对话历史</span>
+        <span class="history-arrow">▼</span>
+      </div>
+      <div class="history-list" id="historyList" style="display: none;">
+        <p class="history-empty">暂无对话记录</p>
+      </div>
+    </div>
+
+    <!-- 控制按钮 -->
+    <div class="control-area">
+      <button class="record-btn" id="recordBtn">
+        <span class="record-icon">🎤</span>
+        <span class="record-text">开始录音</span>
+      </button>
+      <p class="record-hint" id="recordHint">
+        点击按钮开始语音识别
+      </p>
+    </div>
+
+    <!-- 错误提示 -->
+    <div class="error-modal" id="errorModal" style="display: none;">
+      <div class="error-content">
+        <h3 class="error-title">⚠️ 提示</h3>
+        <p class="error-message" id="errorMessage"></p>
+        <button class="error-btn" id="errorBtn">知道了</button>
+      </div>
+    </div>
+
+    <!-- 加载提示 -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">正在生成回复...</p>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="js/api-config.js"></script>
+  <script src="js/realtime-assistant.js"></script>
+</body>
+</html>
