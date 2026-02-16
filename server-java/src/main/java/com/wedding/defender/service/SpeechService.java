@@ -103,7 +103,7 @@ public class SpeechService {
         log.info("连接 Dashscope: {}", url);
 
         WebSocketSession dashscopeSession = client.execute(
-                new org.springframework.websocket.handler.TextWebSocketHandler() {
+                new org.springframework.web.socket.handler.TextWebSocketHandler() {
                     @Override
                     public void afterConnectionEstablished(WebSocketSession wsSession) {
                         log.info("Dashscope 连接成功");
