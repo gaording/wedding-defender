@@ -1,6 +1,5 @@
 package com.wedding.defender.service;
 
-import java.net.URI;
 import java.nio.ByteBuffer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -186,7 +185,7 @@ public class SpeechService {
         };
 
         // 使用 CompletableFuture 获取 session
-        client.execute(handler, uri)
+        client.execute(handler, url)
                 .thenAccept(wsSession -> {
                     log.info("WebSocket session established");
                 })
