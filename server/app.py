@@ -13,8 +13,12 @@ import logging
 import asyncio
 import json
 
-# 配置日志
-logging.basicConfig(level=logging.INFO)
+# 配置日志（带时间戳）
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s [%(levelname)s] %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
 logger = logging.getLogger(__name__)
 
 app = FastAPI(
