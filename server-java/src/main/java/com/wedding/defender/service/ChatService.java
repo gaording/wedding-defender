@@ -165,7 +165,7 @@ public class ChatService {
                         .getString("content")
                         .trim();
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error("调用通义千问 API 失败", e);
             return null;
         }
