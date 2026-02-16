@@ -103,13 +103,28 @@ public class SpeechService {
         URI uri = new URI(url);
         log.info("连接 Dashscope: {}", url);
 
-        WebSocketSession dashscopeSession = client.execute(
+        client.execute(
                 new org.springframework.web.socket.handler.TextWebSocketHandler() {
                     @Override
                     public void afterConnectionEstablished(WebSocketSession wsSession) {
                         log.info("Dashscope 连接成功");
                         session.setDashscopeSession(wsSession);
                         sendMessage(session.getClientSession(), JSONObject.of("status", "connected"));
+
+                        // 发送开始命令
+                        try {
+                            JSONObject startCommand = new JSONObject();
+                            startCommand.put("header", JSONObject.of("action", "start"));
+                            startCommand.put("payload", JSONObject.of(
+                                    "model", "paraformer-realtime-v2",
+                                    "format", "pcm",
+                                    "sample_rate", 16000,
+                                    "language_hints", JSONArray.of("zh")
+                            ));
+                            wsSession.sendMessage(new TextMessage(startCommand.toJSONString()));
+                        } catch (Exception e) {
+                            log.error("发送开始命令失败", e);
+                        }
                     }
 
                     @Override
@@ -163,18 +178,6 @@ public class SpeechService {
                 uri,
                 Map.of("Authorization", "Bearer " + apiKey)
         );
-
-        // 发送开始命令
-        JSONObject startCommand = new JSONObject();
-        startCommand.put("header", JSONObject.of("action", "start"));
-        startCommand.put("payload", JSONObject.of(
-                "model", "paraformer-realtime-v2",
-                "format", "pcm",
-                "sample_rate", 16000,
-                "language_hints", JSONArray.of("zh")
-        ));
-
-        dashscopeSession.sendMessage(new TextMessage(startCommand.toJSONString()));
     }
 
     /**
