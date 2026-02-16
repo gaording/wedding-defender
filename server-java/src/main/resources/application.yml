@@ -1,0 +1,13 @@
+server:
+  port: 3000
+
+dashscope:
+  api-key: ${DASHSCOPE_API_KEY:}
+  chat-url: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
+  speech-url: wss://dashscope.aliyuncs.com/api-ws/v1/inference/asr/realtime
+
+logging:
+  level:
+    com.wedding: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
