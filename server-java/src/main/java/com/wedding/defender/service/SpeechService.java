@@ -2,6 +2,8 @@ package com.wedding.defender.service;
 
 import java.net.URI;
 import java.nio.ByteBuffer;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.socket.BinaryMessage;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketHttpHeaders;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.client.standard.StandardWebSocketClient;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
@@ -17,7 +20,9 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 
+import jakarta.websocket.ClientEndpointConfig;
 import jakarta.websocket.ContainerProvider;
+import jakarta.websocket.HandshakeResponse;
 import jakarta.websocket.WebSocketContainer;
 import lombok.extern.slf4j.Slf4j;
 
@@ -102,10 +107,33 @@ public class SpeechService {
     private void connectToDashscope(SpeechSession session) throws Exception {
         String url = speechUrl + "?model=paraformer-realtime-v2&format=pcm&sample_rate=16000";
 
-        URI uri = new URI(url);
         log.info("连接 Dashscope: {}", url);
 
-        StandardWebSocketClient client = new StandardWebSocketClient();
+        // 创建自定义配置器来添加 Authorization header
+        ClientEndpointConfig.Configurator configurator = new ClientEndpointConfig.Configurator() {
+            @Override
+            public void beforeRequest(Map<String, List<String>> headers) {
+                headers.put("Authorization", List.of("Bearer " + apiKey));
+                log.info("已添加 Authorization header");
+            }
+
+            @Override
+            public void afterResponse(HandshakeResponse handshakeResponse) {
+                log.info("WebSocket 握手响应: {}", handshakeResponse.getHeaders());
+            }
+        };
+
+        // 使用自定义配置创建 WebSocketContainer
+        WebSocketContainer container = ContainerProvider.getWebSocketContainer();
+        ClientEndpointConfig config = ClientEndpointConfig.Builder.create()
+                .configurator(configurator)
+                .build();
+
+        StandardWebSocketClient client = new StandardWebSocketClient(container);
+
+        // 准备 headers（虽然 StandardWebSocketClient 使用 container 的配置，但保留此设置）
+        WebSocketHttpHeaders headers = new WebSocketHttpHeaders();
+        headers.add("Authorization", "Bearer " + apiKey);
 
         TextWebSocketHandler handler = new TextWebSocketHandler() {
             @Override
@@ -185,8 +213,8 @@ public class SpeechService {
             }
         };
 
-        // 使用 CompletableFuture 获取 session
-        client.execute(handler, url)
+        // 使用 CompletableFuture 获取 session，传入 headers
+        client.execute(handler, headers, URI.create(url))
                 .thenAccept(wsSession -> {
                     log.info("WebSocket session established");
                 })
